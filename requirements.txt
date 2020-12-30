@@ -1,4 +1,2 @@
 flask
-pymongo
-pytest
-mongomock
+mysql-connector-python

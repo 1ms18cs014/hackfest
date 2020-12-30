@@ -1,13 +1,14 @@
 version: '3'
 services:
- mongodb:
-   image: mongo:3.3   
-   expose:                 
-     - "27017"
+
+ mysql:
+   image: mysql:8.0
    volumes:
-     - db_data:/data/db
-   environment:    
-    MONGODB_DATABASE: rsvpdata
+     - db_data:/var/lib/mysql
+   environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_PASSWORD: root
+    MYSQL_DATABASE: rsvp
    networks:
     - rsvpnet
 
@@ -16,10 +17,11 @@ services:
    ports:
     - "5000:5000"
    environment:
-    MONGODB_HOST: mongodb
     TEXT1: Hackfest 
     TEXT2: Registration 
-    ORGANIZER: UVCE 
+    ORGANIZER: UVCE
+    MYSQL_HOST: mysql
+    MYSQL_DB: rsvp
    networks:
     - rsvpnet
 
